@@ -1,0 +1,42 @@
+theory:
+  classy:
+    extra_args:
+      Omega_k: 0
+      lensing: true
+      output: tCl,pCl,lCl,mPk
+      N_ncdm: 1
+      m_ncdm: 0.056
+      background_verbose: 1
+      omega_b: 0.02215
+      omega_cdm: 0.13448
+      tau_reio: 0.05152
+      n_s: 0.98546
+likelihood:
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+  bao.sixdf_2011_bao: null
+  sn.pantheon: null
+  sn.pantheonplus: null
+  sn.pantheonplusshoes: null
+  sn.desy5: null
+  sn.jla: null
+  sn.jla_lite.JLA_lite: null
+  sn.union3: null
+params:
+  H0:
+    prior:
+      min: 66
+      max: 74
+    ref:
+      dist: norm
+      loc: 70.52
+      scale: 1.0
+    proposal: 0.5
+    latex: H_0
+sampler:
+  mcmc:
+    max_samples: 3000
+    Rminus1_stop: 0.05
+    Rminus1_cl_stop: 0.08
+    check_every: 30
+output: .

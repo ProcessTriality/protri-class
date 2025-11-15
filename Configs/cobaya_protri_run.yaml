@@ -1,0 +1,60 @@
+
+output: chains/protri_k1_minimal_final/
+debug: True
+
+theory:
+  classy:
+    extra_args:
+      Omega_k: 0
+      lensing: yes
+      output: "tCl,pCl,lCl,mPk"
+      N_ncdm: 1
+      m_ncdm: 0.056
+      background_verbose: 1
+
+      # KOSMOLOGISCHE VORHERSAGEN (Fixiert, k=0)
+      # Diese Werte werden HIER in CLASS gesetzt und nicht gesampelt.
+      omega_b: 0.02215
+      omega_cdm: 0.13448
+      tau_reio: 0.05152
+      n_s: 0.98546
+
+params:
+  # DER EINZIGE FREIHEITSGRAD (K=1): Die Eichung
+  H0:
+    prior:
+      min: 66
+      max: 74
+    ref:
+      dist: norm
+      loc: 70.52
+      scale: 1.0
+    proposal: 0.5
+    latex: H_0
+
+  # ALLE ANDEREN PARAMETER WURDEN IN 'theory:classy:extra_args' VERSCHOBEN!
+  # Sie werden als feste Konstanten an CLASS übergeben.
+
+likelihood:
+  # planck_2018_highl_plik.TTTEEE: null # Removed problematic likelihood
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+  # planck_2018_lensing.clik: null # Removed problematic likelihood
+  bao.sixdf_2011_bao: null
+  # bao.sdss_mgs_2014_bao: null # Removed problematic likelihood
+  # bao.boss_dr12_consensus_full: null # Removed problematic likelihood
+  sn.pantheon: null
+  sn.pantheonplus: null
+  sn.pantheonplusshoes: null
+  sn.desy5: null
+  sn.jla: null
+  sn.jla_lite.JLA_lite: null
+  sn.union3: null
+
+
+sampler:
+  mcmc:
+    max_samples: 3000
+    Rminus1_stop: 0.05
+    Rminus1_cl_stop: 0.08
+    check_every: 30
